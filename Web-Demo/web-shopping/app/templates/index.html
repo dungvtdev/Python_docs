@@ -19,8 +19,15 @@
 		<div class="slider">
 			<div id="slider">
 				<div id="mover">
+					{% set check = 1 %}
 					{% for product in h_products %}
-						{{ slide_product(product) }}
+						{% if check == 1 %}
+							{{ slide_product(product,check) }}
+							{% set check = 0%}
+						{% else %}
+
+							{{ slide_product(product,check) }}
+						{% endif %}
 					{% endfor %}
 				</div>
 			</div>

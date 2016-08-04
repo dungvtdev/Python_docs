@@ -9,13 +9,15 @@ class Product_Service:
 
     def get_hot_product(self):
         "hot product selected by the number of products sold"
-        query = "SELECT * FROM product ORDER BY product.product_bought LIMIT 4 ; "
+        query = "SELECT * FROM product ORDER BY product.product_bought LIMIT 3 ; "
         self.db_cursor.execute(query)
         rows = self.db_cursor.fetchall()
+        for row in rows:
+            print(row['product_name'])
         return rows
 
     def get_new_product(self):
-        query = "SELECT * FROM product WHERE (julianday('now')-julianday(product_time_up)) >= 6 LIMIT 4;"
+        query = "SELECT * FROM product WHERE (julianday('now')-julianday(product_time_up)) >= 2 LIMIT 4;"
         self.db_cursor.execute(query)
         rows = self.db_cursor.fetchall()
         return rows
@@ -42,9 +44,9 @@ class Product_Service:
     def add_product(self,product):
         query = """ INSERT INTO product (product_name,product_description,product_type,product_color,
                     product_price,product_sale,product_bought,product_time_up)
-                    VALUES ('"""+product.prName+"""','"""+product.prDescription+"""',
-                    '"""+product.prType+"""','"""+product.prColor+"""','
-                    """+product.prPrice+"""','"""+product.prSale+"""','
-                    """+product.prBought+"""','"""+product.prTimeUp+"""');"""
+                    VALUES ('{}','{}','{}','{}','{}','{}','{}','{}');""".format(product.prName,product.prDescription,
+                                                            product.prType,product.prColor,product.prPrice,
+                                                            product.prSale,product.prBought,product.prTimeUp)
+        print(query)
         self.db_cursor.execute(query)
         self.db.commit()

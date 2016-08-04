@@ -18,9 +18,9 @@ CREATE TABLE product (
     product_description VARCHAR(255) ,
     product_type VARCHAR(50) NOT NULL,
     product_color VARCHAR(30) NOT NULL,
-    product_price FLOAT NOT NULL,
-    product_sale FLOAT NOT NULL,
-    product_bought INTEGER NOT NULL,
+    product_price VARCHAR(15) NOT NULL,
+    product_sale VARCHAR(5) NOT NULL,
+    product_bought VARCHAR(5) NOT NULL,
     product_time_up DATE NOT NULL
 );
 

@@ -26,5 +26,5 @@ def registry():
 def logout():
     if 'login_user' in session:
         session.pop('login_user',None)
-    return render_template('index.html')
+    return redirect(url_for('index'))
 

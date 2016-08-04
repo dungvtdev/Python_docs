@@ -21,7 +21,7 @@ def create_db():
         # add list image of product into table product_image
         img_service = db_image_product.Image_Service()
         for img in image:
-            print(img['product_name'],' ', img['img_name'],'   ', img['isMain'],'  ', img['isBig'])
+          #  print(img['product_name'],' ', img['img_name'],'   ', img['isMain'],'  ', img['isBig'])
             imgObj = Image(img['product_name'],img['img_name'],img['isMain'],img['isBig'])
             #print(img['product_name'],' ',img['img_name'],'   ',img['isMain'],'  ',img['isBig'])
             img_service.add_image(imgObj)
@@ -29,6 +29,8 @@ def create_db():
         #add list product into table prodcut
         product_service = db_product.Product_Service()
         for pro in product:
+            print(pro['name'],' ', pro['type'],' ', pro['description'],' ', pro['color']
+            ,' ', pro['price'],' ', pro['sale'],' ', pro['bought'],' ', pro['timeup'])
             productObj = Product(pro['name'],pro['type'],pro['description'],pro['color']
                                  ,pro['price'],pro['sale'],pro['bought'],pro['timeup'])
             product_service.add_product(productObj)
