@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} HOME PAGE {% endblock %}
+{% block slide %}
+	{% from "macros.html" import slide_product %}
+<div class="header_slide">
+	<div class="header_bottom_left">
+		<div class="categories">
+			<ul>
+				<h3>Categories</h3>
+				<li><a href="#">Mobile Phones</a></li>
+				<li><a href="#">Desktop</a></li>
+				<li><a href="#">Laptop</a></li>
+				<li><a href="#">Accessories</a></li>
+				<li><a href="#">Software</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="header_bottom_right">
+		<div class="slider">
+			<div id="slider">
+				<div id="mover">
+					{% for product in h_products %}
+						{{ slide_product(product) }}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+{% endblock %}
+
+{% block content %}
+    {% from "macros.html" import list_product %}
+    {{ list_product(new_product,"New Product","content_top") }}
+    {{ list_product(new_product,"Feature Product","content_bottom") }}
+{% endblock %}

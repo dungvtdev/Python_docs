@@ -1,0 +1,179 @@
+{% extends base.html %}
+{% block title %} {{ model.title }} {% endblock %}
+{% block javascript %}
+<script>
+	$(function(){
+		$('#products').slides({
+			preload: true,
+			preloadImage: 'img/loading.gif',
+			effect: 'slide, fade',
+			crossfade: true,
+			slideSpeed: 350,
+			fadeSpeed: 500,
+			generateNextPrev: true,
+			generatePagination: false
+		});
+	});
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="content_top">
+    <div class="back-links">
+        <p><a href="{{url_for('index')}}">Home</a> >>>> <a href="#">Electronics</a></p>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="section group">
+    <div class="cont-desc span_1_of_2">
+        <div class="product-details">
+            <div class="grid images_3_of_2">
+                <div id="container">
+                    <div id="products_example">
+                        <div id="products">
+                            <div class="slides_container">
+                                {% for image in product_img %}
+                                    <a href="#" target="_blank"><img src="static/images/{{image.name}}" alt=" " /></a>
+                                {% endfor %}
+                            </div>
+                            <ul class="pagination">
+                                {% for image in product_img %}
+                                    <li><a href="#"><img src="static/images/{{image.name}}" alt=" " /></a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="desc span_3_of_2">
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <div class="price">
+                    <p>Price: <span>{{ product.price }}</span></p>
+                </div>
+                <div class="available">
+                    <p>Available Options :</p>
+					<ul>
+                        <li>Color: {{ product.color }}</li>
+						<li>Size: {{ product.size }}</li>
+						<li>Quality:<select>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select></li>
+					</ul>
+					</div>
+				<div class="share-desc">
+					<div class="share">
+						<p>Share Product :</p>
+						<ul>
+					    	<li><a href="#"><img src="static/images/facebook.png" alt="" /></a></li>
+					    	<li><a href="#"><img src="static/images/twitter.png" alt="" /></a></li>
+			    		</ul>
+					</div>
+					<div class="button"><span><a href="#">Add to Cart</a></span></div>
+					<div class="clear"></div>
+				</div>
+				 </div>
+			</div>
+			<div class="clear"></div>
+		  </div>
+		<div class="product_desc">
+			<div id="horizontalTab">
+				<ul class="resp-tabs-list">
+					<li>Product Details</li>
+					<li>Product Reviews</li>
+					<div class="clear"></div>
+				</ul>
+				<div class="resp-tabs-container">
+					<div class="product-desc">
+                        {% product.description %}
+                    </div>
+				<div class="review">
+					<div class="your-review">
+				  	 <h3>How Do You Review This Product?</h3>
+				  	  <p>Write Your Own Review?</p>
+				  	  <form>
+					    	<div>
+						    	<span><label>username<span class="red">*</span></label></span>
+						    	<span><input type="text" value=""></span>
+						    </div>
+						    <div><span><label>Summary of Your Review<span class="red">*</span></label></span>
+						    	<span><input type="text" value=""></span>
+						    </div>
+						    <div>
+						    	<span><label>Review<span class="red">*</span></label></span>
+						    	<span><textarea> </textarea></span>
+						    </div>
+						   <div>
+						   		<span><input type="submit" value="SUBMIT REVIEW"></span>
+						  </div>
+					    </form>
+				  	 </div>
+				</div>
+			</div>
+		 </div>
+	 </div>
+	    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true   // 100% fit in a container
+        });
+    });
+   </script>
+   <div class="content_bottom">
+    		<div class="heading">
+    		<h3>Related Products</h3>
+    		</div>
+    		<div class="see">
+    			<p><a href="#">See all Products</a></p>
+    		</div>
+    		<div class="clear"></div>
+    	</div>
+   <div class="section group">
+       {% for product in product_related %}
+		   <div class="grid_1_of_4 images_1_of_4">
+			   <a href="#"><img src="images/new-pic1.jpg" alt=""></a>
+			   <div class="price" style="border:none">
+				   <div class="add-cart" style="float:none">
+					   <h4><a href="#">Add to Cart</a></h4>
+				   </div>
+				   <div class="clear"></div>
+			   </div>
+		   </div>
+       {% endfor %}
+   </div>
+    </div>
+    <div class="rightsidebar span_3_of_1">
+        <h2>CATEGORIES</h2>
+        <ul>
+				      <li><a href="#">Mobile Phones</a></li>
+				      <li><a href="#">Desktop</a></li>
+				      <li><a href="#">Laptop</a></li>
+				      <li><a href="#">Accessories</a></li>
+				      <li><a href="#">Software</a></li>
+				       <li><a href="#">Sports &amp; Fitness</a></li>
+				       <li><a href="#">Footwear</a></li>
+				       <li><a href="#">Jewellery</a></li>
+				       <li><a href="#">Clothing</a></li>
+				       <li><a href="#">Home Decor &amp; Kitchen</a></li>
+				       <li><a href="#">Beauty &amp; Healthcare</a></li>
+				       <li><a href="#">Toys, Kids &amp; Babies</a></li>
+        </ul>
+        <div class="subscribe">
+            <h2>Newsletters Signup</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.......</p>
+            <div class="signup">
+                <form>
+                    <input type="text" value="E-mail address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';"><input type="submit" value="Sign up">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

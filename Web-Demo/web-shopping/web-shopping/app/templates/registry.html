@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %} Registry {% endblock %}
+
+{% block content %}
+
+	<!-- Begin Page Content -->
+
+	<div id="container">
+         {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message_abc">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% for message in form.username.errors %}
+        <div class="message_abc">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.password.errors %}
+        <div class="message_abc">{{ message }}</div>
+    {% endfor %}
+		<div class="login-page11">
+          <div class="form11">
+            <form class="login-form" action="{{url_for('registry')}}" method="post">
+                {{ form.hidden_tag() }}
+               {{ form.firstname }}
+               {{ form.lastname }}
+               {{ form.username }}
+               {{ form.password }}
+               {{ form.repassword }}
+               {{ form.email }}
+               {{ form.phone }}
+               {{ form.role }}
+              <button><input type="submit" value="Registry"></button>
+              <p class="message">Do you want to <a href="{{url_for('login')}}">login</a> ?</p>
+            </form>
+          </div>
+        </div>
+
+	<!-- End Page Content -->
+{% endblock %}
